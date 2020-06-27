@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return BrewerySync::sync();
-    //return view('welcome');
+    return view('welcome');
 });

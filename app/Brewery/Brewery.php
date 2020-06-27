@@ -2,6 +2,7 @@
 
 namespace App\Brewery;
 
+use App\Jobs\InsertBreweryToShopify;
 use GuzzleHttp\Client;
 use App\Http\Resources\Brewery as BreweryResource;
 
@@ -28,6 +29,7 @@ class Brewery implements BreweryInterface {
           $endpoint = 'https://api.openbrewerydb.org/breweries';
           $response = $this->getClient()->get($endpoint);
           return BreweryResource::collection(json_decode($response->getBody(), true));
+
       } catch (\Exception $exception) {
 
       }

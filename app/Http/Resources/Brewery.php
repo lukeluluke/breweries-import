@@ -26,14 +26,17 @@ class Brewery extends JsonResource
     {
 
         return  [
-            'id' => $this->resource['id'],
-            'name' => $this->resource['name'],
-            'type' => $this->resource['brewery_type'],
-            'phone' => $this->resource['phone'],
-            'city' => $this->resource['city'],
-            'country' => $this->resource['country'],
-            'postal_code' => $this->resource['postal_code'],
-            'price' => $this->faker->randomFloat(2, $min = 0, $max = 100)
+            'title' => $this->resource['name'],
+            'body_html' => sprintf('<strong>%s</strong>', $this->resource['brewery_type']),
+            'vendor' => $this->resource['state'],
+            'product_type' => $this->resource['brewery_type'],
+            'variants' => [
+                [
+                    'options1' => $this->resource['state'],
+                    'price' => $this->faker->randomFloat(2, $min = 0, $max = 100),
+                    'sku' => $this->faker->uuid,
+                ]
+            ]
         ];
     }
 }

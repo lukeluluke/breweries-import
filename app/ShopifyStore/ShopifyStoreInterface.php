@@ -8,5 +8,10 @@ interface ShopifyStoreInterface
 {
     public function getProducts();
 
-    public function addProduct();
+    /**
+     * Add a brewery
+     * @param $brewery
+     * @return mixed
+     */
+    public function addProduct($brewery);
 }

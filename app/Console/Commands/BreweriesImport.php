@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Brewery\Brewery;
+use App\Jobs\InsertBreweryToShopify;
 use Illuminate\Console\Command;
 
 class BreweriesImport extends Command
@@ -38,11 +39,14 @@ class BreweriesImport extends Command
      */
     public function handle(Brewery $brewery)
     {
-       $data =  $brewery->getBreweryList();
-
-       foreach ($data as $d) {
-           echo json_encode($d);
-       }
+        try {
+            $breweries =  $brewery->getBreweryList();
+            foreach ($breweries as $brewery) {
+                InsertBreweryToShopify::dispatch(json_encode($brewery));
+            }
+        } catch (\Exception $exception) {
+            echo 'unable to get brewery List';
+        }
 
     }
 }
