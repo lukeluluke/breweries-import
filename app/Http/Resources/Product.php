@@ -19,6 +19,7 @@ class Product extends JsonResource
             'title' => $this->resource['title'],
             'vendor' => $this->resource['vendor'],
             'product_type' => $this->resource['product_type'],
+            'published_at' => date('Y-m-d H:i:s', strtotime($this->resource['published_at'])),
             'variants' => array_map(function ($item) {
                 return [
                     'id' => $item['id'],

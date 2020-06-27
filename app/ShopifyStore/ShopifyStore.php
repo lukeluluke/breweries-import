@@ -18,17 +18,18 @@ class ShopifyStore implements ShopifyStoreInterface
         'Accept' => 'application/json'
     ];
 
-    public function __construct()
+    public function __construct($handlerStack = null)
     {
-        $this->shop = env('SHOPIFY_STORE_URL', '');
-        $this->apiKey = env('SHOPIFY_API_KEY', '');
-        $this->apiPassword = env('SHOPIFY_API_PASSWORD', '');
+        $this->shop = env('SHOPIFY_STORE_URL', 'test');
+        $this->apiKey = env('SHOPIFY_API_KEY', 'test');
+        $this->apiPassword = env('SHOPIFY_API_PASSWORD', 'test');
+        $options = [];
+        $options['base_uri'] = $this->getBaseUrl();
 
-        $this->client = new Client(
-            [
-                'base_uri' => $this->getBaseUrl(),
-            ]
-        );
+        if($handlerStack) {
+            $options['handler'] = $handlerStack;
+        }
+        $this->client = new Client($options);
 
     }
 
@@ -59,7 +60,6 @@ class ShopifyStore implements ShopifyStoreInterface
 
     public function addProduct($brewery)
     {
-
         try {
             $breweryObject = json_decode($brewery, true);
             $data = [

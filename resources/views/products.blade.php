@@ -40,6 +40,7 @@
                 <th scope="col">Option</th>
                 <th scope="col">SKU</th>
                 <th scope="col">Price</th>
+                <th scope="col">Published At</th>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +54,7 @@
                         <td>{{$variant['option1']}}</td>
                         <td>{{$variant['sku']}}</td>
                         <td>{{$variant['price']}}</td>
+                        <td>{{$product['published_at']}}</td>
                     </tr>
                 @endforeach
             @endforeach
