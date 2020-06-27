@@ -5,6 +5,7 @@ namespace App\ShopifyStore;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
+use App\Http\Resources\Product as ProductResource;
 
 class ShopifyStore implements ShopifyStoreInterface
 {
@@ -19,12 +20,6 @@ class ShopifyStore implements ShopifyStoreInterface
 
     public function __construct()
     {
-
-        $headers = [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json'
-        ];
-
         $this->shop = env('SHOPIFY_STORE_URL', '');
         $this->apiKey = env('SHOPIFY_API_KEY', '');
         $this->apiPassword = env('SHOPIFY_API_PASSWORD', '');
@@ -35,11 +30,6 @@ class ShopifyStore implements ShopifyStoreInterface
             ]
         );
 
-    }
-
-    public function getClient()
-    {
-        return $this->client;
     }
 
     /**
@@ -57,7 +47,8 @@ class ShopifyStore implements ShopifyStoreInterface
         try {
             $request = new Request('GET', 'products.json', $this->headers);
             $response = $this->client->send($request);
-            return $response->getBody();
+            $data = json_decode($response->getBody(), true);
+            return ProductResource::collection($data['products']);
         } catch (ClientException $exception) {
             /**
              * Todo add log

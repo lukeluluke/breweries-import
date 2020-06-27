@@ -32,7 +32,7 @@ class Brewery extends JsonResource
             'product_type' => $this->resource['brewery_type'],
             'variants' => [
                 [
-                    'options1' => $this->resource['state'],
+                    'option1' => $this->resource['state'],
                     'price' => $this->faker->randomFloat(2, $min = 0, $max = 100),
                     'sku' => $this->faker->uuid,
                 ]

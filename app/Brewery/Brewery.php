@@ -2,7 +2,6 @@
 
 namespace App\Brewery;
 
-use App\Jobs\InsertBreweryToShopify;
 use GuzzleHttp\Client;
 use App\Http\Resources\Brewery as BreweryResource;
 
