@@ -30,5 +30,23 @@ services:
       - MYSQL_DATABASE=brewery
       - MYSQL_ROOT_PASSWORD=root
 
+  schedule:
+    build: docker/schedule
+    container_name: brweries_schedule
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql-db
+
+  queue:
+    build: docker/queue
+    command: php artisan queue:work
+    container_name: brweries_queue
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql-db
+      - schedule
+
 
 
