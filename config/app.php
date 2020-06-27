@@ -175,8 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BreweryServiceProvider::class,
-        App\Providers\ShopifyStoreServiceProvider::class,
-        App\Providers\BrewerySyncServiceProvider::class
+        App\Providers\ShopifyStoreServiceProvider::class
 
     ],
 
@@ -230,8 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Brewery' => App\Brewery\BreweryFacade::class,
-        'ShopifyStore' => App\ShopifyStore\ShopifyStoreFacade::class,
-        'BrewerySync' => App\BrewerySync\BrewerySyncFacade::class
+        'ShopifyStore' => App\ShopifyStore\ShopifyStoreFacade::class
 
     ],
 

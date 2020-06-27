@@ -45,7 +45,8 @@ class BreweriesImport extends Command
                 InsertBreweryToShopify::dispatch(json_encode($brewery));
             }
         } catch (\Exception $exception) {
-            echo 'unable to get brewery List';
+
+            echo $exception->getMessage();
         }
 
     }
