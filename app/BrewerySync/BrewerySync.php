@@ -21,6 +21,6 @@ class BrewerySync implements BrewerySyncInterface
 
     public function sync()
     {
-        echo $this->brewery->getBreweryList().' - Sync product';
+        return $this->brewery->getBreweryList();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Brewery\Brewery;
 use Illuminate\Console\Command;
 
 class BreweriesImport extends Command
@@ -35,8 +36,13 @@ class BreweriesImport extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Brewery $brewery)
     {
-        //
+       $data =  $brewery->getBreweryList();
+
+       foreach ($data as $d) {
+           echo json_encode($d);
+       }
+
     }
 }
