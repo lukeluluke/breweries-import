@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products =  ShopifyStore::getProducts();
+    return view('products')->with('products', $products->resolve());
 });
